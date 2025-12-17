@@ -13,6 +13,12 @@ h2 {
     font-weight: bold;
     text-align: center;
 }
+a {
+    color: #b68cd2;
+}
+a:hover {
+    color: #8855ab;
+}
 .btn-primary {
     color: #ffffff;
     background-color: #b68cd2;
