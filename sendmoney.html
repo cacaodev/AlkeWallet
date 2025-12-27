@@ -1,0 +1,51 @@
+<!--
+    Agregar evento al botón "Agregar nuevo contacto" para abrir un formulario emergente donde se pueden agregar nuevos contactos.
+        Este formulario debe pedir los siguientes datos:
+            - Nombre y apellido
+            - número de CBU
+            - Alias
+            - Nombre del Banco
+    Al seleccionar un contacto y hacer clic en "Enviar dinero", mostrar un mensaje de confirmación y actualizar el saldo de la cuenta en la pantalla del menú principal.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <link rel="stylesheet" href="styles.css">
+        <title>AlkeWallet - Sendmoney</title>
+</head>
+<body>
+    <main>
+        <h2>Enviar Dinero</h2>
+        <form>
+            <div class="form-group">
+                <label for="buscarContacto">Buscar:</label>
+                <input type="text" class="form-control" id="buscarContacto">
+            </div>
+            <div class="d-grid gap-2"><button type="submit" class="btn btn-primary">Agregar Contacto</button></div>
+            <h3>Contactos</h3>
+            <ul id="listaContactos" class="list-group">
+                <li class="list-group-item">
+                    <div class="info-contacto">
+                        <span class="Nombre">Nuevo Contacto</span><br>
+                        <span class="RUT">RUT: 5.555.555-5</span><br>
+                        <span class="Banco">Banco Estado</span>
+                    </div>
+                </li>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary">Enviar dinero</button>
+                </div>
+            </ul>
+        </form>
+        <div class="d-grid gap-2 mb-3">
+            <button class="btn btn-secondary" id="menu">Volver</button>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="/assets/js/script.js"></script>
+</body>
+</html>
