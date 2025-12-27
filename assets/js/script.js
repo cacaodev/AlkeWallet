@@ -48,20 +48,21 @@ if (botonMovimientos) {
 }
 
 //DEPOSIT
-let saldoGuardado = localStorage.getItem("saldoUsuario");
-let saldoInicial = 100000;
+let saldoInicial = 100000; 
+let saldoActual = saldoInicial;
 
+let saldoGuardado = localStorage.getItem("saldoUsuario");
 if (saldoGuardado != null) {
-    saldoInicial = parseInt(saldoGuardado);
+    saldoActual = parseInt(saldoGuardado);
 }
 
 let elementoSaldo = document.getElementById("saldoActual");
-
 if (elementoSaldo) {
-    elementoSaldo.innerText = "Saldo actual: $" + saldoInicial.toLocaleString('es-ES');
+    elementoSaldo.innerText = "Saldo actual: $" + saldoActual.toLocaleString('es-ES');
 }
 
 let formDepositar = document.getElementById("formDepositar");
+
 let campoMonto = document.getElementById("montoDeposito");
 
 if (formDepositar) {
@@ -71,11 +72,11 @@ if (formDepositar) {
         let montoAgregado = parseInt(campoMonto.value);
 
         if (montoAgregado > 0) {
-            saldoInicial = saldoInicial + montoAgregado;
-            localStorage.setItem("saldoUsuario", saldoInicial);
-            alert("¡Depósito exitoso! Nuevo saldo: $" + saldoInicial.toLocaleString('es-ES'));
-            window.location.href = "../menu.html";
-
+            saldoActual = saldoActual + montoAgregado;
+            localStorage.setItem("saldoUsuario", saldoActual); 
+            alert("¡Depósito exitoso! Nuevo saldo: $" + saldoActual.toLocaleString('es-ES'));
+            console.log("¡Depósito exitoso! Nuevo saldo: $" + saldoActual.toLocaleString('es-ES'));
+            campoMonto.value = "";
         } else {
             alert("Solo puedes ingresar números naturales positivos. Intenta nuevamente.");
             console.error("No puedes depositar un número negativo.");
@@ -84,7 +85,43 @@ if (formDepositar) {
 }
 
 //SENDMONEY
+let botonAgregarContacto = document.getElementById("agregarContacto");
+if (botonAgregarContacto) {
+    botonAgregarContacto.addEventListener("click", function(event) {
+        let nombre = prompt("Ingrese nombre y apellido:");
+        let cbu = prompt("Ingrese su número de CBU:");
+        let alias = prompt("Ingrese un alias:");
+        let banco = prompt("Ingrese nombre del Banco:");
+        if (nombre) {
+            alert("Agregaste a " + nombre + " a la agenda de contactos");
+        }
+    });
+}
+
+let botonEnviarDinero = document.getElementById("enviarDinero");
+if (botonEnviarDinero) {
+    botonEnviarDinero.addEventListener("click", function(event) {
+        event.preventDefault();
+        let destinatario = prompt("Ingrese nombre destinatario:");
+        let montoTexto = prompt("Ingrese monto a transferir:");
+        let monto = parseInt(montoTexto);
+        if (monto > 0 && monto <= saldoActual) {
+            saldoActual = saldoActual - monto;
+            localStorage.setItem("saldoUsuario", saldoActual);
+            alert("Enviaste $" + monto.toLocaleString('es-ES') + " a " + destinatario + ". Te quedan $" + saldoActual.toLocaleString('es-ES') + ".");
+        } else if (monto > saldoActual) {
+            alert("Fondos insuficientes para realizar esta operación.");
+            console.error("Falta dinero en la cuenta.");
+        } else {
+            alert("El monto ingresado no es válido.");
+            console.error("Error de monto.");
+        }
+    });
+}
+
 //TRANSACTIONS
+
+
 //GLOBAL
 let botonVolver = document.getElementById("menu");
 if (botonVolver) {

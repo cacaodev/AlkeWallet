@@ -2,7 +2,7 @@
     Agregar evento al botón "Agregar nuevo contacto" para abrir un formulario emergente donde se pueden agregar nuevos contactos.
         Este formulario debe pedir los siguientes datos:
             - Nombre y apellido
-            - número de CBU
+            - Número de CBU
             - Alias
             - Nombre del Banco
     Al seleccionar un contacto y hacer clic en "Enviar dinero", mostrar un mensaje de confirmación y actualizar el saldo de la cuenta en la pantalla del menú principal.
@@ -24,7 +24,7 @@
                 <label for="buscarContacto">Buscar:</label>
                 <input type="text" class="form-control" id="buscarContacto">
             </div>
-            <div class="d-grid gap-2"><button type="submit" class="btn btn-primary">Agregar Contacto</button></div>
+            <div class="d-grid gap-2"><button type="submit" class="btn btn-primary" id="agregarContacto">Agregar Contacto</button></div>
             <h3>Contactos</h3>
             <ul id="listaContactos" class="list-group">
                 <li class="list-group-item">
@@ -35,7 +35,7 @@
                     </div>
                 </li>
                 <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-primary">Enviar dinero</button>
+                    <button type="submit" class="btn btn-primary" id="enviarDinero">Enviar dinero</button>
                 </div>
             </ul>
         </form>
