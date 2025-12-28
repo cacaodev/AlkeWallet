@@ -240,3 +240,5 @@ $(document).ready(function () {
         });
     }
 });
+
+// Le tuve que pedir mucha asistencia a Gemini y me tomó horas, pero se logró!
