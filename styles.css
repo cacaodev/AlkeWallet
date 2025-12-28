@@ -45,3 +45,11 @@ a:hover {
     color: #4886bb !important;
     border: none;      
 }
+.list-group-item.active {
+    background-color: #c6e2fa !important;
+    border-color: #c6e2fa !important;
+    color: #4886bb !important;
+}
+.list-group-item.active h5, .list-group-item.active small, .list-group-item.active div {
+    color: #4886bb !important;
+}
