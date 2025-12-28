@@ -11,9 +11,13 @@ function registrarMovimiento(tipo, descripcion, monto) {
     localStorage.setItem("historialMovimientos", JSON.stringify(historial));
 }
 $(document).ready(function () {
-    $('#menu').click(function () {
+$('#menu').click(function () {
         alert("Regresando al menú principal...");
-        window.location.href = "../menu.html";
+        if (window.location.pathname.includes('/feature/')) {
+            window.location.href = "../menu.html";
+        } else {
+            window.location.href = "menu.html";
+        }
     });
 
     // LOGIN
