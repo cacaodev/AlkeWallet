@@ -1,5 +1,22 @@
-// LOGIN
+// GLOBAL
+function registrarMovimiento(tipo, descripcion, monto) {
+    var historial = JSON.parse(localStorage.getItem("historialMovimientos")) || [];
+    var fecha = new Date().toLocaleDateString();
+    historial.push({
+        tipo: tipo,
+        fecha: fecha,
+        descripcion: descripcion,
+        monto: monto
+    });
+    localStorage.setItem("historialMovimientos", JSON.stringify(historial));
+}
 $(document).ready(function () {
+    $('#menu').click(function () {
+        alert("Regresando al menú principal...");
+        window.location.href = "../menu.html";
+    });
+
+    // LOGIN
     $('#loginForm').submit(function (event) {
         event.preventDefault();
         var emailIngresado = $('#exampleInputEmail1').val();
@@ -19,15 +36,13 @@ $(document).ready(function () {
             $('#usuarioInvalido').fadeIn();
         }
     });
-});
 
-// MENU
-$(document).ready(function () {
+    // MENU
     $("#deposit").click(function () {
         alert("Redirigiendo a Depositar");
         window.location.href = "feature/deposit.html";
     });
-    
+
     $("#sendMoney").click(function () {
         alert("Redirigiendo a Enviar Dinero");
         window.location.href = "sendmoney.html";
@@ -49,10 +64,24 @@ $(document).ready(function () {
     if ($('#saldoActual').length) {
         $('#saldoActual').text("Saldo actual: $" + saldoActual.toLocaleString('es-ES'));
     }
-});
 
-// DEPOSIT
-$(document).ready(function () {
+    var historialGuardado = localStorage.getItem("historialMovimientos");
+
+    if (historialGuardado == null) {
+        localStorage.setItem("saldoUsuario", saldoActual);
+        registrarMovimiento('ingreso', 'Depósito Inicial', saldoInicial);
+
+    } else {
+        var saldoGuardado = localStorage.getItem("saldoUsuario");
+        if (saldoGuardado != null) {
+            saldoActual = parseInt(saldoGuardado);
+        }
+    }
+    if ($('#saldoActual').length) {
+        $('#saldoActual').text("Saldo actual: $" + saldoActual.toLocaleString('es-ES'));
+    }
+
+    // DEPOSIT
     var saldoInicial = 100000;
     var saldoActual = saldoInicial;
     var saldoGuardado = localStorage.getItem("saldoUsuario");
@@ -87,11 +116,11 @@ $(document).ready(function () {
             var alertaError = '<div class="alert alert-danger" role="alert">Monto inválido. Ingrese un número positivo.</div>';
             $('#alert-container').html(alertaError);
         }
-    });
-});
 
-// SENDMONEY
-$(document).ready(function () {
+        registrarMovimiento('ingreso', 'Depósito en cuenta', monto);
+    });
+
+    // SENDMONEY
     var saldoInicial = 100000;
     var saldoActual = saldoInicial;
 
@@ -99,13 +128,13 @@ $(document).ready(function () {
     if (saldoGuardado != null) {
         saldoActual = parseInt(saldoGuardado);
     }
-    
+
     var contactoElegido = "";
-    $("#btnMostrarFormulario").click(function() {
-        $("#formularioContacto").toggle(); 
+    $("#btnMostrarFormulario").click(function () {
+        $("#formularioContacto").toggle();
     });
 
-    $("#btnGuardar").click(function() {
+    $("#btnGuardar").click(function () {
         var nombre = $("#nuevoNombre").val();
         var rut = $("#nuevoRUT").val();
         var alias = $("#nuevoAlias").val();
@@ -136,40 +165,78 @@ $(document).ready(function () {
         $("#alert-container").html('<div class="alert alert-success alert-dismissible fade show">Contacto agregado <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
     });
 
-    $("#listaContactos").on("click", "li", function() {
+    $("#listaContactos").on("click", "li", function () {
         $(this).addClass("active").siblings().removeClass("active");
         contactoElegido = $(this).find("h5").text();
         $("#seccionEnviar").fadeIn();
         $("#montoEnviar").focus();
     });
 
-    $("#btnEnviar").click(function() {
+    $("#btnEnviar").click(function () {
         var monto = parseInt($("#montoEnviar").val());
         if (!isNaN(monto) && monto > 0 && monto <= saldoActual) {
             saldoActual -= monto;
             localStorage.setItem("saldoUsuario", saldoActual);
 
-            $("#alert-container").html('<div class="alert alert-success mt-3">Enviaste $' + monto.toLocaleString('es-ES') + ' a ' + contactoElegido + '. Nuevo saldo: $' + saldoActual.toLocaleString('es-ES') + '</div>');
-
+            $("#alert-container").html('<div class="alert alert-success mt-3">Enviaste $' + monto.toLocaleString('es-ES') + ' a ' + contactoElegido + '. Tu nuevo saldo es de: $' + saldoActual.toLocaleString('es-ES') + '</div>');
             $("#seccionEnviar").hide();
             $("#montoEnviar").val("");
             $("#listaContactos li").removeClass("active");
 
         } else if (monto > saldoActual) {
-            alert("Fondos insuficientes. Tienes $" + saldoActual.toLocaleString('es-ES'));
+            alert("Fondos insuficientes.");
 
         } else {
             alert("Monto inválido.");
         }
-    });
-});
 
-// TRANSACTIONS
-
-// GLOBAL
-$(document).ready(function () {
-    $('#menu').click(function () {
-        alert("Regresando al menú principal...");
-        window.location.href = "../menu.html";
+        registrarMovimiento('egreso', 'Transferencia a ' + contactoElegido, monto);
     });
+
+    // TRANSACTIONS
+    if ($('#cuerpoTabla').length) {
+        function dibujarTabla(filtro) {
+            var historial = JSON.parse(localStorage.getItem("historialMovimientos")) || [];
+            var tbody = $('#cuerpoTabla');
+            tbody.empty();
+            var contador = 0;
+            historial.reverse().forEach(function (mov) {
+                var mostrar = false;
+                if (filtro === 'todos') mostrar = true;
+                else if (filtro === 'deposito' && mov.tipo === 'ingreso') mostrar = true;
+                else if (filtro === 'envio' && mov.tipo === 'egreso') mostrar = true;
+                if (mostrar) {
+                    var claseColor = mov.tipo === 'ingreso' ? 'text-success' : 'text-danger';
+                    var signo = mov.tipo === 'ingreso' ? '+' : '-';
+                    var icono = mov.tipo === 'ingreso' ? '⬋' : '⬈';
+                    var fila = `
+                        <tr>
+                            <td>${mov.fecha}</td>
+                            <td>
+                                <strong>${icono} ${mov.descripcion}</strong>
+                            </td>
+                            <td class="text-right font-weight-bold ${claseColor}">
+                                ${signo}$${mov.monto.toLocaleString('es-ES')}
+                            </td>
+                        </tr>
+                    `;
+                    tbody.append(fila);
+                    contador++;
+                }
+            });
+            if (contador === 0) {
+                $('#mensajeVacio').show();
+                if (filtro !== 'todos') {
+                    $('#mensajeVacio').text("No hay movimientos de este tipo.");
+                }
+            } else {
+                $('#mensajeVacio').hide();
+            }
+        }
+        dibujarTabla('todos');
+        $('#filtroMovimientos').change(function () {
+            var valorSeleccionado = $(this).val();
+            dibujarTabla(valorSeleccionado);
+        });
+    }
 });
