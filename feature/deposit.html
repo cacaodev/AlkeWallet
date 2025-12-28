@@ -1,23 +1,10 @@
-<!--
-    Mostrar el saldo actual:
-    Al cargar la página, utilizar jQuery para obtener el saldo actual del usuario desde el Local Storage y luego lo mostramos en el formulario de depósito. Esto permite que el usuario vea su saldo actual antes de realizar el depósito.
-
-    Agregar una leyenda con el monto depositado:
-    Después de realizar el depósito, agregar una leyenda debajo del formulario de depósito que muestra el monto depositado utilizando jQuery. Esto le proporciona al usuario una confirmación visual del monto que ha depositado.
-
-    Mejoras en el mensaje de éxito:
-    Utilizar una alerta de Bootstrap para mostrar un mensaje de éxito después de realizar el depósito. La alerta de Bootstrap se crea dinámicamente con jQuery y se agrega al elemento #alert-container.
-
-    Redirigir después del depósito:
-    Redirigir al usuario a la pantalla del menú principal después de un retraso de 2 segundos utilizando setTimeout. Esto le da tiempo al usuario para ver el mensaje de éxito antes de ser redirigido.
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-        <link rel="stylesheet" href="/styles.css">
+        <link rel="stylesheet" href="../styles.css">
         <title>AlkeWallet - Deposit</title>
 </head>
 <body>
@@ -25,7 +12,7 @@
         <h2>Depositar</h2>
         <div class="mb-3 text-center">
             <span id="saldoDisplay" class="badge badge-info p-2" style="font-size: 1rem;">
-            Cargando saldo...
+            Procesando el saldo 
             </span>
         </div>
         <form id="formDepositar">
@@ -42,6 +29,6 @@
     </main>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-    <script src="/assets/js/script.js"></script>
+    <script src="../assets/js/script.js"></script>
 </body>
 </html>

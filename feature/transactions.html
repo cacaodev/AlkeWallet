@@ -1,26 +1,17 @@
-<!--
-    Reemplazar lista de transacciones:
-    Reemplazar la lista de movimientos codificada en el HTML con una lista ficticia de transacciones (listaTransacciones). Debes reemplazar esta lista ficticia con tu lista real de transacciones.
-
-    Filtrar por tipo de movimiento:
-    Agregar un elemento select en el formulario para filtrar los movimientos por tipo (compra, depósito, transferencia recibida) y utilizar jQuery para mostrar dinámicamente los últimos movimientos según el tipo seleccionado en el filtro
-
-    Cada vez que se selecciona un tipo de transacción en el filtro, se llama a la función mostrarUltimosMovimientos(filtro) que muestra los movimientos correspondientes en la lista. La función getTipoTransaccion(tipo) se utiliza para obtener el tipo de transacción en formato legible para mostrarlo en la lista.
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-        <link rel="stylesheet" href="/styles.css">
+        <link rel="stylesheet" href="../styles.css">
         <title>AlkeWallet - Transactions</title>
 </head>
 <body>
     <main>
         <div>
             <h2>Últimos Movimientos</h2>
-<div class="form-group">
+            <div class="form-group">
                 <label for="filtroMovimientos" class="font-weight-bold">Filtrar por:</label>
                 <select class="form-control" id="filtroMovimientos">
                     <option value="todos">Todos</option>
@@ -49,6 +40,6 @@
     </main>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-    <script src="/assets/js/script.js"></script>
+    <script src="../assets/js/script.js"></script>
 </body>
 </html>

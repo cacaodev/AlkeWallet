@@ -1,12 +1,3 @@
-<!--
-    Agregar evento al botón "Agregar nuevo contacto" para abrir un formulario emergente donde se pueden agregar nuevos contactos.
-        Este formulario debe pedir los siguientes datos:
-            - Nombre y apellido
-            - Número de RUT
-            - Alias
-            - Nombre del Banco
-    Al seleccionar un contacto y hacer clic en "Enviar dinero", mostrar un mensaje de confirmación y actualizar el saldo de la cuenta en la pantalla del menú principal.
--->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,19 +32,18 @@
         </div>
 
         <h3>Agenda</h3>
+        <div class="form-group mt-3">
+            <input type="text" class="form-control" id="buscadorContacto" placeholder="Buscar">
+        </div>
         <p align="center">Haz clic en un contacto para seleccionarlo</p>
-
         <ul id="listaContactos" class="list-group mb-3">
-            <li class="list-group-item list-group-item-action">
+            <li class="list-group-item list-group-item-action" style="cursor: pointer;">
                 <div class="d-flex justify-content-between align-items-center">
-
                     <h5 class="mb-0 font-weight-bold">Teletón</h5>
-
                     <div class="text-right">
-                        <div class="font-weight-bold">Banco: Banco de Chile</div> <small class="font-weight-bold">RUT:
-                            24.500-03</small>
+                        <div class="font-weight-bold">Banco: Banco de Chile</div>
+                        <small class="font-weight-bold">RUT: 24.500-03</small>
                     </div>
-
                 </div>
             </li>
         </ul>
@@ -76,7 +66,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
-    <script src="/assets/js/script.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 
 </html>

@@ -111,13 +111,13 @@ $(document).ready(function () {
             setTimeout(function () {
                 window.location.href = "../menu.html";
             }, 2000);
+            
+            registrarMovimiento('ingreso', 'Depósito en cuenta', monto);
 
         } else {
             var alertaError = '<div class="alert alert-danger" role="alert">Monto inválido. Ingrese un número positivo.</div>';
             $('#alert-container').html(alertaError);
         }
-
-        registrarMovimiento('ingreso', 'Depósito en cuenta', monto);
     });
 
     // SENDMONEY
@@ -183,14 +183,21 @@ $(document).ready(function () {
             $("#montoEnviar").val("");
             $("#listaContactos li").removeClass("active");
 
+            registrarMovimiento('egreso', 'Transferencia a ' + contactoElegido, monto);
+
         } else if (monto > saldoActual) {
             alert("Fondos insuficientes.");
 
         } else {
             alert("Monto inválido.");
         }
+    });
 
-        registrarMovimiento('egreso', 'Transferencia a ' + contactoElegido, monto);
+    $("#buscadorContacto").on("keyup", function() {
+        var valor = $(this).val().toLowerCase();
+        $("#listaContactos li").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(valor) > -1)
+        });
     });
 
     // TRANSACTIONS
