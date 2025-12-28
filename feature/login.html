@@ -1,39 +1,50 @@
 <!--
-    Pantalla de inicio de sesión (login.html):
+Uso de Selectores de jQuery:
+    En lugar de utilizar document.getElementById para obtener los valores de los campos de correo electrónico y contraseña, hemos utilizado los selectores de jQuery para obtener los valores directamente con $('#email').val() y $('#password').val(). Esto hace que el código sea más conciso y legible.
 
-    Agrega un evento al botón "Iniciar sesión".
+Uso de jQuery para enviar el formulario:
+    Reemplazar el evento submit en el formulario con $('#loginForm').submit(...) para manejar el envío del formulario utilizando jQuery. Esto nos permite tener un código más claro y centralizado.
 
-    Implementa la funcionalidad de validar las credenciales ingresadas utilizando JavaScript. Si las credenciales son correctas, mostra un mensaje de éxito y redirige a la pantalla del menú principal (menu.html). Si las credenciales son incorrectas, mostrar un mensaje de error.
+Uso de jQuery para redirigir a la página del menú principal:
+    En lugar de utilizar window.location.href para redirigir al usuario después del inicio de sesión, utilizar jQuery para hacerlo con window.location.href = '../HTML/menu.html';. 
 
-    El boton de menu principal no debe verse en la pantalla login, ya que ahora tenemos que poder redirigir a la pantalla menú con el inicio de login
+Uso de alertas de Bootstrap:
+    En lugar de usar las alertas predeterminadas de JavaScript utilizar las alertas de Bootstrap para mostrar mensajes de éxito o error con un diseño más atractivo y personalizable.
 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
         <link rel="stylesheet" href="/styles.css">
         <title>AlkeWallet - Login</title>
 </head>
 <body>
     <main>
-    <h2>Inicio de Sesión</h2>
-    <form id="loginForm">
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Correo Electrónico</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <h2>Inicio de Sesión</h2>
+        <div id="iniciarSesion" class="alert alert-success" role="alert" style="display: none;">
+        ¡Bienvenido! serás redirigido al menú principal en un instante
         </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
+        <div id="usuarioInvalido" class="alert alert-danger" role="alert" style="display: none;">
+        Usuario o contraseña incorrectos. Intente nuevamente.
         </div>
-        <div class="d-grid gap-2">
-        <button type="submit" class="btn btn-primary">Ingresar</button>
-        </div>
-    </form>
+        <form id="loginForm">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Correo Electrónico</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+            </div>
+        </form>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"...></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
     <script src="/assets/js/script.js"></script>
 </body>
 </html>
