@@ -14,6 +14,35 @@
     <main>
         <h2>Enviar Dinero</h2>
         <div id="alert-container"></div>
+        <h3>Cuenta de Origen</h3>
+        <ul class="list-group mb-3">
+            <li class="list-group-item">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 font-weight-bold">Camila Yáñez</h5>
+                    <div class="text-right">
+                        <div class="font-weight-bold">Banco: AlkeWallet</div>
+                        <small class="font-weight-bold">RUT: 19.838.524-7</small>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <h3>Cuenta de Destino</h3>
+        <p align="center">Haz clic en un contacto para seleccionarlo</p>
+        <div class="form-group mt-3">
+            <input type="text" class="form-control" id="buscadorContacto" placeholder="Buscar">
+        </div>
+        <ul id="listaContactos" class="list-group mb-3">
+            <li class="list-group-item list-group-item-action" style="cursor: pointer;">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 font-weight-bold">Teletón</h5>
+                    <div class="text-right">
+                        <div class="font-weight-bold">Banco: Banco de Chile</div>
+                        <small class="font-weight-bold">RUT: 24.500-03</small>
+                    </div>
+                </div>
+            </li>
+        </ul>
 
         <div class="mb-3">
             <button class="btn btn-primary btn-block" id="btnMostrarFormulario">Agregar nuevo contacto</button>
@@ -30,23 +59,6 @@
             </div>
             <button class="btn btn-primary btn-block" id="btnGuardar">Guardar en la Agenda</button>
         </div>
-
-        <h3>Agenda</h3>
-        <div class="form-group mt-3">
-            <input type="text" class="form-control" id="buscadorContacto" placeholder="Buscar">
-        </div>
-        <p align="center">Haz clic en un contacto para seleccionarlo</p>
-        <ul id="listaContactos" class="list-group mb-3">
-            <li class="list-group-item list-group-item-action" style="cursor: pointer;">
-                <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0 font-weight-bold">Teletón</h5>
-                    <div class="text-right">
-                        <div class="font-weight-bold">Banco: Banco de Chile</div>
-                        <small class="font-weight-bold">RUT: 24.500-03</small>
-                    </div>
-                </div>
-            </li>
-        </ul>
 
         <div id="seccionEnviar" style="display: none;">
             <div class="mb-3">

@@ -1,13 +1,20 @@
 body {
     color: #3B254D;
     background-color: #eee;
+    background-image: url(assets/img/bg.png);
+    background-size: cover;
 }
 main {
     background-color: white;
-    margin: 20px;
-    padding: 10px;
+    margin: 50% 20px;
+    padding: 20px;
     border-radius: 10px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+h1 {
+    color: #b68cd2;
+    font-weight: bold;
+    text-align: center;
 }
 h2 {
     color: #84c6ff;
@@ -22,6 +29,10 @@ a {
 }
 a:hover {
     color: #8855ab;
+    text-decoration: none;
+}
+.pfp {
+    border-radius: 100%;
 }
 .btn-primary {
     color: #ffffff;
@@ -64,5 +75,6 @@ a:hover {
     main {
         max-width: 600px;
         margin: 20px auto;
+        margin-top: 10%; /* Quería intentar centrarlo verticalmente y no pude */
     }
 }
